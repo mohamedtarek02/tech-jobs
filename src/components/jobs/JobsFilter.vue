@@ -1,0 +1,98 @@
+<template>
+  <div class="main">
+    <base-card class="card">
+      <div class="container">
+        <h2>Filter by:</h2>
+        <span class="filter-option">
+          <input type="checkbox" id="design" checked @change="setFilter" />
+          <label for="design">UI & UX Design</label>
+        </span>
+        <span class="filter-option">
+          <input type="checkbox" id="frontend" checked @change="setFilter" />
+          <label for="frontend">Frontend</label>
+        </span>
+        <span class="filter-option">
+          <input type="checkbox" id="backend" checked @change="setFilter" />
+          <label for="backend">Backend</label>
+        </span>
+        <span class="filter-option">
+          <input type="checkbox" id="security" checked @change="setFilter" />
+          <label for="security">Cybersecurity</label>
+        </span>
+        <span class="filter-option">
+          <input
+            type="checkbox"
+            id="dataAnalytics"
+            checked
+            @change="setFilter"
+          />
+          <label for="dataAnalytics">Data Analytics</label>
+        </span>
+      </div>
+    </base-card>
+  </div>
+</template>
+
+<script>
+export default {
+  emits: ['change-filter'],
+  data() {
+    return {
+      filters: {
+        frontend: true,
+        backend: true,
+        security: true,
+        design: true,
+        dataAnalytics: true,
+      },
+    };
+  },
+  methods: {
+    setFilter(event) {
+      const inputId = event.target.id;
+      const isActive = event.target.checked;
+      const updatedFilters = {
+        ...this.filters,
+        [inputId]: isActive,
+      };
+      this.filters = updatedFilters;
+      this.$emit('change-filter', updatedFilters);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.main {
+  position: fixed;
+  width: 20%;
+}
+.container {
+  margin: auto;
+  width: 80%;
+}
+h2 {
+  margin: 0.3rem 0rem 1rem;
+}
+span {
+  display: block;
+  margin: 0.75rem 0;
+}
+
+.filter-option {
+  margin-right: 1rem;
+}
+
+.filter-option label,
+.filter-option input {
+  vertical-align: middle;
+}
+
+.filter-option label {
+  margin-left: 0.25rem;
+}
+
+.filter-option.active label {
+  font-weight: bold;
+}
+</style>
