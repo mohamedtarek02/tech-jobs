@@ -9,15 +9,51 @@
           <router-link to="/jobs">Jobs</router-link>
         </li>
         <li>
-          <router-link to="/register">Create Job</router-link>
+          <router-link :to="registerURL">Create Job</router-link>
         </li>
         <li>
-          <router-link to="/requests">Requests</router-link>
+          <router-link :to="requestURL">Requests</router-link>
+        </li>
+        <li v-if="!isLogged">
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-else>
+          <base-button @click="logout">Logout</base-button>
         </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    isLogged() {
+      return this.$store.getters.isLogged;
+    },
+    registerURL() {
+      if (this.isLogged) {
+        return '/create-job';
+      } else {
+        return '/auth?redirect=create-job';
+      }
+    },
+    requestURL() {
+      if (this.isLogged) {
+        return '/requests';
+      } else {
+        return '/auth?redirect=requests';
+      }
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.replace('/jobs');
+    },
+  },
+};
+</script>
 
 <style scoped>
 header {
@@ -29,11 +65,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99999;
 }
 
 header a {
   text-decoration: none;
-  color: white;
+  color: rgb(233 233 233);
   display: inline-block;
   padding: 0.5rem 1rem;
 }
@@ -41,7 +78,8 @@ header a {
 a:active,
 a:hover,
 a.router-link-active {
-  border: 1px solid #ffffff;
+  font-weight: bold;
+  color: white;
 }
 
 h1 {

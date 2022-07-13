@@ -1,7 +1,7 @@
 export default {
   requests(state, _, _2, rootGetters) {
-    const clientId = rootGetters.clientId;
-    return state.requests.filter((req) => req.clientId === clientId);
+    const userId = rootGetters.userId;
+    return state.requests.filter((req) => req.userId === userId);
   },
   hasRequests(_, getters) {
     return getters.requests && getters.requests.length > 0;

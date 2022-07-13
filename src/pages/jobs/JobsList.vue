@@ -26,7 +26,7 @@
               v-for="job in filteredJobs"
               :key="job.id"
               :id="job.id"
-              :clientId="job.clientId"
+              :userId="job.userId"
               :title="job.title"
               :details="job.details"
               :rate="job.hourlyRate"

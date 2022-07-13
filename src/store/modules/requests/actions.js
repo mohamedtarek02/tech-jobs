@@ -3,7 +3,7 @@ export default {
     const newRequest = {
       userEmail: payload.email,
       message: payload.message,
-      clientId: payload.clientId,
+      userId: payload.userId,
     };
     const response = await fetch(
       `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/requests.json`,
@@ -28,8 +28,10 @@ export default {
   },
 
   async fetchRequests(context) {
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/requests.json`
+      `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/requests.json?auth=` +
+        token
     );
     const responseData = await response.json();
 
@@ -45,7 +47,7 @@ export default {
     for (const key in responseData) {
       const request = {
         id: key,
-        clientId: responseData[key].clientId,
+        userId: responseData[key].userId,
         userEmail: responseData[key].userEmail,
         message: responseData[key].message,
       };

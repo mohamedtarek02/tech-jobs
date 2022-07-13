@@ -12,7 +12,7 @@
       <base-badge v-for="area in areas" :key="area" :title="area"></base-badge>
     </div>
     <div class="actions">
-      <base-button link :to="`/contact/${clientId}`" class="apply"
+      <base-button link :to="`/contact/${userId}`" class="apply"
         >Contact client</base-button
       >
     </div>
@@ -21,8 +21,7 @@
 
 <script>
 export default {
-  props: ['id', 'clientId', 'details', 'title', 'rate', 'areas'],
- 
+  props: ['id', 'userId', 'details', 'title', 'rate', 'areas'],
 };
 </script>
 

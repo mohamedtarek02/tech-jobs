@@ -1,8 +1,8 @@
 export default {
   async createJob(context, data) {
-    const clientId = context.rootGetters.clientId;
+    const userId = context.rootGetters.userId;
     const jobData = {
-      clientId,
+      userId,
       title: data.title,
       details: data.details,
       hourlyRate: data.hourlyRate,
@@ -48,7 +48,7 @@ export default {
     for (const key in responseData) {
       const job = {
         id: key,
-        clientId: responseData[key].clientId,
+        userId: responseData[key].userId,
         title: responseData[key].title,
         details: responseData[key].details,
         hourlyRate: responseData[key].hourlyRate,

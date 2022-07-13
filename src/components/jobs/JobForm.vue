@@ -12,8 +12,7 @@
     </div>
     <div class="form-control" :class="{ invalid: !details.isValid }">
       <label for="details">details</label>
-      <input
-        type="textarea"
+      <textarea
         id="details"
         rows="5"
         v-model.trim="details.val"
@@ -164,6 +163,10 @@ input[type='checkbox'] + label {
   font-weight: normal;
   display: inline;
   margin: 0 0 0 0.5rem;
+}
+
+textarea {
+  height: 150px;
 }
 
 input,

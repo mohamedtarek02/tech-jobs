@@ -13,20 +13,20 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
     link: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     to: {
       type: String,
       required: false,
-      default: '/'
-    }
-  }
-}
+      default: '/',
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -35,8 +35,8 @@ a {
   text-decoration: none;
   padding: 0.4rem 0.6rem;
   font: inherit;
-  background-color: #009688;
-  border: 1px solid #009688;
+  background-color: #01675d;
+  border: 1px solid #01675d;
   color: white;
   cursor: pointer;
   border-radius: 30px;
@@ -48,20 +48,20 @@ a:hover,
 a:active,
 button:hover,
 button:active {
-  background-color: #009688;
-  border-color: #009688;
+  background-color: #01675d;
+  border-color: #01675d;
 }
 
 .flat {
   background-color: transparent;
-  color: #009688;
+  color: #01675d;
   border: none;
 }
 
 .outline {
   background-color: transparent;
-  border-color: #009688;
-  color: #009688;
+  border-color: #01675d;
+  color: #01675d;
 }
 
 .flat:hover,

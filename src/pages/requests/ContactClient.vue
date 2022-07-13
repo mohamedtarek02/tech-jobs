@@ -42,7 +42,7 @@ export default {
       this.$store.dispatch('requests/contactClient', {
         email: this.email,
         message: this.message,
-        clientId: this.$route.params.id,
+        userId: this.$route.params.id,
       });
       this.$router.replace('/jobs');
     },
