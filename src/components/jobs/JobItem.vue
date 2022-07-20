@@ -4,8 +4,12 @@
       <div class="border">
         <li>
           <div class="headContainer">
-            <h2>{{ title }}</h2>
-            <span class="rate">${{ rate }} / hour</span>
+            <div class="title">
+              <h2>{{ title }}</h2>
+            </div>
+            <div class="rateDiv">
+              <span class="rate">${{ rate }} / hour</span>
+            </div>
           </div>
           <p class="exp">
             Experiecne level: <span class="level">{{ experienceLevel }}</span>
@@ -69,10 +73,12 @@ span {
   width: 98%;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
 }
-h2 {
+title {
   margin-bottom: 0px !important;
 }
+
 .rate {
   font-weight: 600;
   color: green;

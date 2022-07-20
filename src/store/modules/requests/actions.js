@@ -2,7 +2,7 @@ export default {
   async contactClient(context, payload) {
     const newRequest = {
       userEmail: payload.email,
-      message: payload.message,
+      message: payload.message, 
       userId: payload.userId,
       jobId: payload.jobId,
     };

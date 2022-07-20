@@ -45,7 +45,7 @@ a {
 
 a:hover,
 a:active {
-  color: #8d007a;
+  color: #02bc87;
 }
 
 p {

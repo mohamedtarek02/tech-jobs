@@ -21,7 +21,7 @@
                 :jobDetails="job.details"
               ></your-jobs>
             </ul>
-            <h3>Job proposals:</h3>
+            <h3>proposals received on that job:</h3>
             <div v-if="hasRequests">
               <ul>
                 <request-item
@@ -101,6 +101,10 @@ export default {
 }
 header {
   text-align: center;
+}
+
+h3 {
+  padding-bottom: 10px;
 }
 
 ul {
