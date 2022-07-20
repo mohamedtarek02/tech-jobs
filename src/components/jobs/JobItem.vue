@@ -21,6 +21,7 @@
               v-for="area in areas"
               :key="area"
               :title="area"
+              class="skills"
             ></base-badge>
           </div>
           <div class="actions">
@@ -107,11 +108,26 @@ div {
   font-weight: bold;
 }
 
+.skills {
+  margin-bottom: 5px;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
 }
 .apply {
   border-radius: 5px;
+}
+/* Media */
+@media (min-width: 320px) and (max-width: 768px) {
+  .apply {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+  }
+  .container:hover {
+    background: none;
+  }
 }
 </style>

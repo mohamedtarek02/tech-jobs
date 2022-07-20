@@ -60,8 +60,8 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: 3rem;
   background-color: #009688;
+  padding: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +92,7 @@ h1 a {
 }
 
 header nav {
-  width: 90%;
+  width: 99%;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -113,18 +113,20 @@ li {
 }
 
 /*media*/
-@media (max-width: 600) {
+@media (min-width: 320px) and (max-width: 540px) {
+  header nav {
+    display: block;
+  }
   h1 {
-    font-size: 16px;
+    margin-left: 7px;
+  }
+  header ul {
+    justify-content: start;
+  }
+  header a {
+    padding: 10px 1px;
   }
 }
-@media (max-width: 769px) {
-  h1 {
-    font-size: 20px;
-  }
-}
-@media (max-width: 992px) {
-}
-@media (max-width: 1025px) {
+@media (min-width: 480px) and (max-width: 768px) {
 }
 </style>

@@ -3,31 +3,33 @@
     <base-card class="card">
       <div class="container">
         <h2>Filter by:</h2>
-        <span class="filter-option">
-          <input type="checkbox" id="design" checked @change="setFilter" />
-          <label for="design">UI & UX Design</label>
-        </span>
-        <span class="filter-option">
-          <input type="checkbox" id="frontend" checked @change="setFilter" />
-          <label for="frontend">Frontend</label>
-        </span>
-        <span class="filter-option">
-          <input type="checkbox" id="backend" checked @change="setFilter" />
-          <label for="backend">Backend</label>
-        </span>
-        <span class="filter-option">
-          <input type="checkbox" id="security" checked @change="setFilter" />
-          <label for="security">Cybersecurity</label>
-        </span>
-        <span class="filter-option">
-          <input
-            type="checkbox"
-            id="dataAnalytics"
-            checked
-            @change="setFilter"
-          />
-          <label for="dataAnalytics">Data Analytics</label>
-        </span>
+        <div class="skills-container">
+          <div class="skills-control">
+            <input type="checkbox" id="design" checked @change="setFilter" />
+            <label for="design">UI & UX Design</label>
+          </div>
+          <div class="skills-control">
+            <input type="checkbox" id="frontend" checked @change="setFilter" />
+            <label for="frontend">Frontend</label>
+          </div>
+          <div class="skills-control">
+            <input type="checkbox" id="backend" checked @change="setFilter" />
+            <label for="backend">Backend</label>
+          </div>
+          <div class="skills-control">
+            <input type="checkbox" id="security" checked @change="setFilter" />
+            <label for="security">Cybersecurity</label>
+          </div>
+          <div class="skills-control">
+            <input
+              type="checkbox"
+              id="dataAnalytics"
+              checked
+              @change="setFilter"
+            />
+            <label for="dataAnalytics">Data Analytics</label>
+          </div>
+        </div>
       </div>
     </base-card>
   </div>
@@ -75,25 +77,32 @@ export default {
 h2 {
   margin: 0.3rem 0rem 1rem;
 }
-span {
-  display: block;
-  margin: 0.75rem 0;
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+.skills-control {
+  width: 100%;
+  margin-bottom: 7px;
 }
 
-.filter-option {
-  margin-right: 1rem;
+/* Media */
+@media (min-width: 320px) and (max-width: 768px) {
+  .main {
+    position: static;
+    width: 100%;
+  }
+  .skills-control {
+    width: 50%;
+  }
 }
-
-.filter-option label,
-.filter-option input {
-  vertical-align: middle;
+@media (min-width: 480px) and (max-width: 768px) {
+  .skills-control {
+    width: 50%;
+  }
 }
-
-.filter-option label {
-  margin-left: 0.25rem;
-}
-
-.filter-option.active label {
-  font-weight: bold;
+@media (min-width: 768px) and (max-width: 1025px) {
 }
 </style>

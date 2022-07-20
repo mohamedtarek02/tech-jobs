@@ -146,4 +146,23 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+
+/* Media  */
+@media (min-width: 320px) and (max-width: 768px) {
+  .layout {
+    display: block;
+  }
+  .filter {
+    margin: 0 3%;
+    width: 94%;
+  }
+  .jobs {
+    margin: 0 3%;
+    width: 94%;
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+}
+@media (min-width: 768px) and (max-width: 1025px) {
+}
 </style>

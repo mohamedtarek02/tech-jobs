@@ -171,7 +171,7 @@ export default {
         experienceLevel: this.exps.val,
         areas: this.areas.val,
       };
-      
+
       this.$emit('save-data', formData);
     },
   },
@@ -267,5 +267,16 @@ span {
 }
 .areas-error {
   margin-top: -26px !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .skills-control {
+    width: 50%;
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+  .skills-control {
+    width: 50%;
+  }
 }
 </style>

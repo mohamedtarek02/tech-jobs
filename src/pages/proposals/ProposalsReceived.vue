@@ -106,27 +106,23 @@ header {
 ul {
   list-style: none;
   padding: 0;
+  margin-top: -20px;
 }
 
 /*media */
-@media (min-width: 440px) {
+@media (min-width: 320px) and (max-width: 480px) {
   .card {
     width: 95%;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .card {
     width: 90%;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 769px) and (max-width: 1025px) {
   .card {
-    width: 80%;
-  }
-}
-@media (min-width: 1025px) {
-  .card {
-    width: 50%;
+    width: 70%;
   }
 }
 </style>

@@ -38,23 +38,20 @@ h2 {
   margin-top: 0;
 }
 
-/* media */
-/*media */
-@media (min-width: 440px) {
+/* Media */
+@media (min-width: 320px) and (max-width: 480px) {
+  .card {
+    width: 95%;
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
   .card {
     width: 90%;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 768px) and (max-width: 1025px) {
   .card {
-    width: 60%;
+    width: 80%;
   }
 }
-@media (min-width: 992px) {
-  .card {
-    width: 50%;
-  }
-}
-
-
 </style>

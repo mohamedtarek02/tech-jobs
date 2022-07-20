@@ -102,21 +102,23 @@ textarea:focus {
   color: red;
 }
 
-/* media  */
-/*media */
-@media (min-width: 440px) {
+/* media */
+@media (min-width: 320px) and (max-width: 480px) {
   .card {
-    width: 80%;
+    width: 95%;
+  }
+  .send {
+    width: 90%;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 480px) and (max-width: 768px) {
+  .card {
+    width: 85%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1025px) {
   .card {
     width: 60%;
-  }
-}
-@media (min-width: 992px) {
-  .card {
-    width: 50%;
   }
 }
 </style>
