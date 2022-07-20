@@ -68,7 +68,8 @@ export default {
   width: 20%;
 }
 .container {
-  margin: auto;
+  margin: 15px auto;
+  padding: 8px 0;
   width: 80%;
 }
 h2 {

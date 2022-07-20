@@ -6,26 +6,37 @@ export default {
       title: data.title,
       details: data.details,
       hourlyRate: data.hourlyRate,
+      experienceLevel: data.experienceLevel,
       areas: data.areas,
     };
 
+    const token = context.rootGetters.token;
+
     const response = await fetch(
-      `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/jobs.json`,
+      `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/jobs.json?auth=` +
+        token,
       {
         method: 'POST',
         body: JSON.stringify(jobData),
       }
     );
 
-    // const responseData = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      // error ...
+      const error = new Error(
+        responseData.message || 'Failed to create the Job.'
+      );
+      throw error;
     }
+    console.log('mutation is wroing');
+
+    jobData.id = responseData.name;
 
     context.commit('registerJob', {
       ...jobData,
     });
+    console.log(jobData);
   },
 
   async loadJobs(context, payload) {
@@ -52,6 +63,7 @@ export default {
         title: responseData[key].title,
         details: responseData[key].details,
         hourlyRate: responseData[key].hourlyRate,
+        experienceLevel: responseData[key].experienceLevel,
         areas: responseData[key].areas,
       };
       jobs.push(job);

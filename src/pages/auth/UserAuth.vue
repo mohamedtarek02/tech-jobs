@@ -34,8 +34,8 @@
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'test@test.com',
+      password: '12345678',
       formIsValid: true,
       mode: 'login',
       isLoading: false,
@@ -96,7 +96,7 @@ export default {
         if (this.$route.query.redirect === 'create-job') {
           this.$router.replace('/create-job');
         } else if (this.$route.query.redirect === 'requests') {
-          this.$router.replace('/requests');
+          this.$router.replace('/proposals');
         } else {
           this.$router.replace('/jobs');
         }
@@ -132,6 +132,10 @@ form {
 
 .form-control {
   margin: 0.5rem 0;
+}
+
+h3 {
+  padding: 17px 0px 0 8px;
 }
 
 label {

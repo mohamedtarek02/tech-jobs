@@ -1,21 +1,23 @@
 <template>
   <base-card class="card">
-    <form @submit.prevent="submitForm">
-      <div class="form-control">
-        <label for="email">Your E-Mail</label>
-        <input type="email" id="email" v-model.trim="email" />
-      </div>
-      <div class="form-control">
-        <label for="message">Message</label>
-        <textarea rows="5" id="message" v-model.trim="message"></textarea>
-      </div>
-      <p class="errors" v-if="!formIsValid">
-        Please enter a valid email and non-empty message.
-      </p>
-      <div class="actions">
-        <base-button>Send Message</base-button>
-      </div>
-    </form>
+    <div class="container">
+      <form @submit.prevent="submitForm">
+        <div class="form-control">
+          <label for="email">Your E-Mail</label>
+          <input type="email" id="email" v-model.trim="email" />
+        </div>
+        <div class="form-control">
+          <label for="message">Your Propsoal</label>
+          <textarea rows="5" id="message" v-model.trim="message"></textarea>
+        </div>
+        <p class="errors" v-if="!formIsValid">
+          Please enter a valid email and non-empty message.
+        </p>
+        <div class="actions">
+          <base-button class="send">Send</base-button>
+        </div>
+      </form>
+    </div>
   </base-card>
 </template>
 
@@ -43,6 +45,7 @@ export default {
         email: this.email,
         message: this.message,
         userId: this.$route.params.id,
+        jobId: this.$route.query.jobId,
       });
       this.$router.replace('/jobs');
     },
@@ -51,6 +54,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding: 15px 10px;
+}
 .card {
   width: 50%;
   margin: 1rem auto;
@@ -85,13 +91,32 @@ textarea:focus {
   background-color: #faf6ff;
   outline: none;
 }
-
+.actions {
+  margin-top: 5px;
+}
+.send {
+  padding: 6px 25px;
+}
 .errors {
   font-weight: bold;
   color: red;
 }
 
-.actions {
-  margin-top: 5px;
+/* media  */
+/*media */
+@media (min-width: 440px) {
+  .card {
+    width: 80%;
+  }
+}
+@media (min-width: 769px) {
+  .card {
+    width: 60%;
+  }
+}
+@media (min-width: 992px) {
+  .card {
+    width: 50%;
+  }
 }
 </style>

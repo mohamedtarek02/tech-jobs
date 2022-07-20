@@ -30,6 +30,27 @@
       />
       <span v-if="!rate.isValid">{{ rateErrors }}</span>
     </div>
+    <h3>Experience Level</h3>
+    <div class="skills-container">
+      <div
+        class="skills-control"
+        v-for="experience in experiences"
+        :key="experience.val"
+      >
+        <input
+          type="radio"
+          :id="experience.val"
+          :value="experience.text"
+          name="experiences"
+          v-model="exps.val"
+          @change="clearValidity('exps')"
+        />
+        <label :for="experience.va">{{ experience.text }}</label>
+      </div>
+    </div>
+    <span v-if="!exps.isValid" class="areas-error"
+      >You should choose one experience level.</span
+    >
     <h3>Skills needed</h3>
     <div class="skills-container">
       <div
@@ -42,13 +63,15 @@
           type="checkbox"
           :id="skill.val"
           :value="skill.text"
-          v-model.trim="areas.val"
+          v-model="areas.val"
           @change="clearValidity('areas')"
         />
         <label for="skill.val">{{ skill.text }}</label>
       </div>
     </div>
-    <span v-if="!areas.isValid">You should choose at least one skill.</span>
+    <span v-if="!areas.isValid" class="areas-error"
+      >You should choose at least one skill.</span
+    >
     <div class="actions">
       <base-button class="register">Register</base-button>
     </div>
@@ -74,12 +97,21 @@ export default {
         val: null,
         isValid: true,
       },
+      exps: {
+        val: [],
+        isValid: true,
+      },
       areas: {
         val: [],
         isValid: true,
       },
       rateErrors: '',
       isFormValid: true,
+      experiences: [
+        { text: 'Entry', val: 'entry' },
+        { text: 'Intermediate', val: 'int' },
+        { text: 'Expert', val: 'exp' },
+      ],
       skills: [
         { text: 'UI & UX Design', val: 'design' },
         { text: 'Frontend', val: 'frontend' },
@@ -116,6 +148,10 @@ export default {
         this.isFormValid = false;
         this.rateErrors = 'You rate should be more than zero.';
       }
+      if (this.exps.val.length === 0) {
+        this.exps.isValid = false;
+        this.isFormValid = false;
+      }
       if (this.areas.val.length === 0) {
         this.areas.isValid = false;
         this.isFormValid = false;
@@ -132,8 +168,10 @@ export default {
         title: this.title.val,
         details: this.details.val,
         hourlyRate: this.rate.val,
+        experienceLevel: this.exps.val,
         areas: this.areas.val,
       };
+      
       this.$emit('save-data', formData);
     },
   },
@@ -147,6 +185,7 @@ export default {
 .skills-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 23px;
 }
 .skills-control {
   width: 33%;
@@ -159,7 +198,8 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input[type='checkbox'] + label {
+input[type='checkbox'] + label,
+input[type='radio'] + label {
   font-weight: normal;
   display: inline;
   margin: 0 0 0 0.5rem;
@@ -169,7 +209,8 @@ textarea {
   height: 150px;
 }
 
-input,
+input[type='text'],
+input[type='number'],
 textarea {
   display: block;
   width: 100%;
@@ -223,5 +264,8 @@ span {
   display: inline-block;
   border-radius: 3px;
   font-size: 12px;
+}
+.areas-error {
+  margin-top: -26px !important;
 }
 </style>

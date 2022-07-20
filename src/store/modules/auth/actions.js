@@ -64,8 +64,6 @@ export default {
     const expiresIn = localStorage.getItem('tokenExpiration');
     const expirationDate = +expiresIn - new Date().getTime();
 
-    console.log(expiresIn, expirationDate);
-
     if (expirationDate < 0) {
       console.log('the number is smaller than zero');
       return;

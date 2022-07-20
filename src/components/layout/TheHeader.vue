@@ -12,7 +12,7 @@
           <router-link :to="registerURL">Create Job</router-link>
         </li>
         <li>
-          <router-link :to="requestURL">Requests</router-link>
+          <router-link :to="requestURL">Proposals</router-link>
         </li>
         <li v-if="!isLogged">
           <router-link to="/auth">Login</router-link>
@@ -40,7 +40,7 @@ export default {
     },
     requestURL() {
       if (this.isLogged) {
-        return '/requests';
+        return '/proposals';
       } else {
         return '/auth?redirect=requests';
       }
@@ -72,7 +72,7 @@ header a {
   text-decoration: none;
   color: rgb(233 233 233);
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 }
 
 a:active,
@@ -89,12 +89,6 @@ h1 {
 h1 a {
   color: white;
   margin: 0;
-}
-
-h1 a:hover,
-h1 a:active,
-h1 a.router-link-active {
-  border-color: transparent;
 }
 
 header nav {
@@ -116,5 +110,21 @@ header ul {
 
 li {
   margin: 0 0.5rem;
+}
+
+/*media*/
+@media (max-width: 600) {
+  h1 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 769px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 992px) {
+}
+@media (max-width: 1025px) {
 }
 </style>

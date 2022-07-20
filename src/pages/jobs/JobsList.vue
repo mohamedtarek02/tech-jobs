@@ -14,7 +14,7 @@
       <section class="jobs">
         <base-card>
           <div class="controls">
-            <base-button mode="outline" @click="loadJobs(true)"
+            <base-button mode="outline" @click="loadJobs(true)" class="refresh"
               >Refresh</base-button
             >
           </div>
@@ -30,6 +30,7 @@
               :title="job.title"
               :details="job.details"
               :rate="job.hourlyRate"
+              :experienceLevel="job.experienceLevel"
               :areas="job.areas"
             ></job-item>
           </ul>
@@ -122,6 +123,9 @@ export default {
 </script>
 
 <style scoped>
+.refresh {
+  margin: 15px;
+}
 .layout {
   display: flex;
 }

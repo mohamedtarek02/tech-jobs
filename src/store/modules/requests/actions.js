@@ -4,6 +4,7 @@ export default {
       userEmail: payload.email,
       message: payload.message,
       userId: payload.userId,
+      jobId: payload.jobId,
     };
     const response = await fetch(
       `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/requests.json`,
@@ -23,6 +24,7 @@ export default {
     }
 
     newRequest.id = responseData.name;
+    console.log(newRequest);
 
     context.commit('addRequest', newRequest);
   },
@@ -47,9 +49,10 @@ export default {
     for (const key in responseData) {
       const request = {
         id: key,
-        userId: responseData[key].userId,
         userEmail: responseData[key].userEmail,
         message: responseData[key].message,
+        userId: responseData[key].userId,
+        jobId: responseData[key].jobId,
       };
       requests.push(request);
     }
