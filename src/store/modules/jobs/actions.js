@@ -1,3 +1,4 @@
+import axios from 'axios';
 export default {
   async createJob(context, data) {
     const userId = context.rootGetters.userId;
@@ -12,24 +13,17 @@ export default {
 
     const token = context.rootGetters.token;
 
-    const response = await fetch(
-      `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/jobs.json?auth=` +
+    const response = await axios({
+      method: 'post',
+      url:
+        `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/jobs.json?auth=` +
         token,
-      {
-        method: 'POST',
-        body: JSON.stringify(jobData),
-      }
-    );
+      data: {
+        ...jobData,
+      },
+    });
 
-    const responseData = await response.json();
-
-    if (!response.ok) {
-      const error = new Error(
-        responseData.message || 'Failed to create the Job.'
-      );
-      throw error;
-    }
-    console.log('mutation is wroing');
+    const responseData = await response.data;
 
     jobData.id = responseData.name;
 
@@ -44,15 +38,11 @@ export default {
       return;
     }
 
-    const response = await fetch(
+    const response = await axios.get(
       `https://tech-jobs-8ed3f-default-rtdb.firebaseio.com/jobs.json`
     );
-    const responseData = await response.json();
 
-    if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to fetch!');
-      throw error;
-    }
+    const responseData = await response.data;
 
     const jobs = [];
 

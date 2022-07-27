@@ -9,7 +9,7 @@ This is a complete application for finding a job or finding a proper engineer to
 - Single-page application.
 - Responsive website could run on all screens.
 - Very easy to use.
-- All of the data is stored in a database so no worries to lose it.
+- All of the data is stored in a database, so no worries to lose it.
 
 ## Project techniques
 - HTML, CSS and JS

@@ -63,6 +63,9 @@ export default {
 a {
   text-decoration: none;
 }
+h2 {
+  margin: 0px;
+}
 p,
 h2,
 span {

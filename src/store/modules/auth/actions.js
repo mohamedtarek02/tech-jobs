@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 let timer;
 export default {
   async signup(context, payload) {
@@ -21,26 +23,35 @@ export default {
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBjFDRwjWB4QxudxhQ3sTKpjU3pj-4jcQk';
     }
 
-    const response = await fetch(URL, {
-      method: 'POST',
-      body: JSON.stringify({
+    // const response = await fetch(URL, {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     email: payload.email,
+    //     password: payload.password,
+    //     returnSecureToken: true,
+    //   }),
+    // });
+
+    const response = await axios({
+      method: 'post',
+      url: URL,
+      data: {
         email: payload.email,
         password: payload.password,
         returnSecureToken: true,
-      }),
+      },
     });
 
-    const responseData = await response.json();
+    const responseData = await response.data;
 
-    if (!response.ok) {
-      const error = new Error(
-        responseData.message || 'Failed to authenticate.'
-      );
-      throw error;
-    }
+    // if (!response.ok) {
+    //   const error = new Error(
+    //     responseData.message || 'Failed to authenticate.'
+    //   );
+    //   throw error;
+    // }
 
-    // const expiresIn = +responseData.expiresIn * 1000;
-    const expiresIn = 9000000000;
+    const expiresIn = +responseData.expiresIn * 1000;
 
     const expirationData = new Date().getTime() + expiresIn;
 
@@ -65,7 +76,6 @@ export default {
     const expirationDate = +expiresIn - new Date().getTime();
 
     if (expirationDate < 0) {
-      console.log('the number is smaller than zero');
       return;
     }
 
