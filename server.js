@@ -4,20 +4,14 @@ const path = require('path');
 
 const app = express();
 
+//here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, '/dist')));
+
+// this * route is to serve project on different page routes except root `/`
+app.get(/.*/, function (req, res) {
+  res.sendFile(path.join(__dirname, '/dist/index.html'));
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port);
-
-console.log('listening on port: ', +port);
-
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static('vue-first-app/build'));
-
-  // Express serve up index.html file if it doesn't recognize route
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/app/client/build/index.html'));
-  });
-}
+console.log(`app is listening on port: ${port}`);
