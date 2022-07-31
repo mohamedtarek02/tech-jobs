@@ -4,7 +4,7 @@
       <div class="from">
         <strong>From:</strong><a :href="emailLink" class="email">{{ email }}</a>
       </div>
-      <p style="white-space: pre-line">{{ message }}</p>
+      <p style="white-space: pre-line" class="message">{{ message }}</p>
     </li>
   </div>
 </template>
@@ -50,5 +50,8 @@ a:active {
 
 p {
   margin: 0.5rem 0 0 0;
+}
+.message {
+  color: #343434;
 }
 </style>

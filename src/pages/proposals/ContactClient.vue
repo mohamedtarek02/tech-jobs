@@ -8,7 +8,7 @@
         </div>
         <div class="form-control">
           <label for="message">Your Propsoal</label>
-          <textarea rows="5" id="message" v-model.trim="message"></textarea>
+          <textarea rows="12" id="message" v-model.trim="message"></textarea>
         </div>
         <p class="errors" v-if="!formIsValid">
           Please enter a valid email and non-empty message.
@@ -82,7 +82,7 @@ textarea {
   width: 100%;
   font: inherit;
   border: 1px solid #ccc;
-  padding: 0.15rem;
+  padding: 0.4rem;
 }
 
 input:focus,
