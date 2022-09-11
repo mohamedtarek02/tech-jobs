@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2>{{ jobTitle }}</h2>
-    <p >{{ jobDetails }}</p>
+    <p>{{ jobDetails }}</p>
   </div>
 </template>
 
@@ -14,5 +14,8 @@ export default {
 <style scoped>
 h2 {
   color: #009688;
+}
+p {
+  white-space: pre-line;
 }
 </style>

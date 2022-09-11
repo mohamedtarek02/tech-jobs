@@ -4,11 +4,7 @@ export default {
     const userId = context.rootGetters.userId;
     const jobData = {
       userId,
-      title: data.title,
-      details: data.details,
-      hourlyRate: data.hourlyRate,
-      experienceLevel: data.experienceLevel,
-      areas: data.areas,
+      ...data,
     };
 
     const token = context.rootGetters.token;
@@ -30,7 +26,6 @@ export default {
     context.commit('registerJob', {
       ...jobData,
     });
-    console.log(jobData);
   },
 
   async loadJobs(context, payload) {
@@ -49,12 +44,7 @@ export default {
     for (const key in responseData) {
       const job = {
         id: key,
-        userId: responseData[key].userId,
-        title: responseData[key].title,
-        details: responseData[key].details,
-        hourlyRate: responseData[key].hourlyRate,
-        experienceLevel: responseData[key].experienceLevel,
-        areas: responseData[key].areas,
+        ...responseData[key],
       };
       jobs.push(job);
     }

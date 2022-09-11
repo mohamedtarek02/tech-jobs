@@ -21,7 +21,7 @@
       <span v-if="!details.isValid">This input could not be empty.</span>
     </div>
     <div class="form-control" :class="{ invalid: !rate.isValid }">
-      <label for="hourlyrate">Hourly rate</label>
+      <label for="hourlyrate">Hourly rate ($)</label>
       <input
         type="number"
         id="hourlyrate"
@@ -45,7 +45,7 @@
           v-model="exps.val"
           @change="clearValidity('exps')"
         />
-        <label :for="experience.va">{{ experience.text }}</label>
+        <label :for="experience.val">{{ experience.text }}</label>
       </div>
     </div>
     <span v-if="!exps.isValid" class="areas-error"
@@ -66,7 +66,7 @@
           v-model="areas.val"
           @change="clearValidity('areas')"
         />
-        <label for="skill.val">{{ skill.text }}</label>
+        <label :for="skill.val">{{ skill.text }}</label>
       </div>
     </div>
     <span v-if="!areas.isValid" class="areas-error"
@@ -198,11 +198,17 @@ label {
   margin-bottom: 0.5rem;
 }
 
+input[type='checkbox'],
+input[type='radio'] {
+  cursor: pointer;
+}
+
 input[type='checkbox'] + label,
 input[type='radio'] + label {
   font-weight: normal;
   display: inline;
   margin: 0 0 0 0.5rem;
+  cursor: pointer;
 }
 
 textarea {

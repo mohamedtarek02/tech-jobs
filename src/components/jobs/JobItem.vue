@@ -1,41 +1,45 @@
 <template>
   <div class="container">
-    <router-link :to="`/contact/${userId}?jobId=` + id">
-      <div class="border">
-        <li>
-          <div class="headContainer">
-            <div class="title">
-              <h2>{{ title }}</h2>
-            </div>
-            <div class="rateDiv">
-              <span class="rate">${{ rate }} / hour</span>
-            </div>
+    <div class="border">
+      <li>
+        <div class="headContainer">
+          <div class="title">
+            <h2>{{ title }}</h2>
           </div>
-          <p class="exp">
-            Experiecne level: <span class="level">{{ experienceLevel }}</span>
-          </p>
-          <div class="details">
-            <p>
-              {{ details }}
-            </p>
+          <div class="rateDiv">
+            <span class="rate">${{ rate }} / hour</span>
           </div>
-          <div>
-            <span class="skills-required">Skills Required: </span>
-            <base-badge
-              v-for="area in areas"
-              :key="area"
-              :title="area"
-              class="skills"
-            ></base-badge>
-          </div>
-          <div class="actions">
-            <base-button link :to="`/contact/${userId}`" class="apply"
-              >Submit a proposal</base-button
-            >
-          </div>
-        </li>
-      </div>
-    </router-link>
+        </div>
+        <p class="exp">
+          Experiecne level: <span class="level">{{ experienceLevel }}</span>
+        </p>
+        <div class="details">
+          <span style="white-space: pre-line">
+            {{ receivedDetails }}
+          </span>
+          <span
+            class="see-more"
+            @click="showMoreDetails"
+            v-if="!seeMore && manyChars"
+            >See More</span
+          >
+        </div>
+        <div>
+          <span class="skills-required">Skills Required: </span>
+          <base-badge
+            v-for="area in areas"
+            :key="area"
+            :title="area"
+            class="skills"
+          ></base-badge>
+        </div>
+        <div class="actions">
+          <base-button link :to="`/contact/${userId}`" class="apply"
+            >Submit a proposal</base-button
+          >
+        </div>
+      </li>
+    </div>
   </div>
 </template>
 
@@ -50,6 +54,28 @@ export default {
     'experienceLevel',
     'areas',
   ],
+  data() {
+    return {
+      seeMore: false,
+    };
+  },
+  computed: {
+    manyChars() {
+      return this.details.length > 200;
+    },
+    receivedDetails() {
+      if (this.details.length > 200 && this.seeMore === false) {
+        return this.details.slice(0, 200) + '....';
+      } else {
+        return this.details;
+      }
+    },
+  },
+  methods: {
+    showMoreDetails() {
+      this.seeMore = true;
+    },
+  },
 };
 </script>
 
@@ -57,9 +83,7 @@ export default {
 .container {
   margin: 0 !important;
 }
-.container:hover {
-  background: #dcdcdc;
-}
+
 a {
   text-decoration: none;
 }
@@ -100,6 +124,11 @@ title {
 }
 .details {
   margin-bottom: 15px;
+}
+.see-more {
+  font-weight: bold;
+  color: #009688;
+  cursor: pointer;
 }
 
 .border {

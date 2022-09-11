@@ -7,29 +7,24 @@
     >
       <p>{{ error }}</p>
     </base-dialog>
-    <section>
+    <base-spinner v-if="isLoading"></base-spinner>
+    <section v-else>
       <header>
-        <h2>Proposals Received</h2>
+        <h2>Proposals Received for your posted jobs</h2>
       </header>
       <base-card class="card" v-for="job in jobs" :key="job.id">
         <div class="container">
-          <base-spinner v-if="isLoading"></base-spinner>
-          <div v-else>
+          <div>
             <ul>
               <your-jobs
                 :jobTitle="job.title"
                 :jobDetails="job.details"
               ></your-jobs>
             </ul>
-            <h3>proposals received on that job:</h3>
+
             <div v-if="hasRequests">
               <ul>
-                <request-item
-                  v-for="req in proposals(job.id)"
-                  :key="req.id"
-                  :email="req.userEmail"
-                  :message="req.message"
-                ></request-item>
+                <request-item :proposals="proposals(job.id)"></request-item>
               </ul>
             </div>
             <h3 v-else>You haven't received any requests yet!</h3>
@@ -55,6 +50,7 @@ export default {
       error: null,
     };
   },
+
   computed: {
     jobs() {
       const jobs = this.$store.getters['jobs/jobs'];
@@ -94,7 +90,7 @@ export default {
 
 <style scoped>
 .container {
-  padding: 15px 5px;
+  padding: 15px 5px 1px;
 }
 .card {
   width: 50%;
@@ -118,10 +114,16 @@ ul {
   .card {
     width: 95%;
   }
+  .seeButton {
+    padding: 8px 33%;
+  }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .card {
     width: 90%;
+  }
+  .seeButton {
+    padding: 8px 36%;
   }
 }
 @media (min-width: 769px) and (max-width: 1025px) {
