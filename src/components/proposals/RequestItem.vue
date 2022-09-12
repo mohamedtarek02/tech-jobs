@@ -90,8 +90,8 @@ a {
   color: #009688;
   text-decoration: none;
   font-weight: bold;
-  background-color: #d1d1d1;
-  border-radius: 0 18px;
+  background-color: #dbdbdb;
+  border-radius: 53px;
   padding: 2px 10px;
   margin-left: 8px;
 }

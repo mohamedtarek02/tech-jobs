@@ -18,7 +18,7 @@
             <ul>
               <your-jobs
                 :jobTitle="job.title"
-                :jobDetails="job.details"
+                :details="job.details"
               ></your-jobs>
             </ul>
 

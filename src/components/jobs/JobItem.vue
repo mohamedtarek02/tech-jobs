@@ -18,11 +18,18 @@
             {{ receivedDetails }}
           </span>
           <span
-            class="see-more"
+            class="see"
             @click="showMoreDetails"
             v-if="!seeMore && manyChars"
             >See More</span
           >
+          <span
+            class="see"
+            v-if="manyChars && seeMore"
+            @click="seeMore = false"
+          >
+            See Less
+          </span>
         </div>
         <div>
           <span class="skills-required">Skills Required: </span>
@@ -34,7 +41,7 @@
           ></base-badge>
         </div>
         <div class="actions">
-          <base-button link :to="`/contact/${userId}`" class="apply"
+          <base-button link :to="`/contact/${userId}?jobId=${id}`" class="apply"
             >Submit a proposal</base-button
           >
         </div>
@@ -44,7 +51,9 @@
 </template>
 
 <script>
+import longText from '../../mixins/longText';
 export default {
+  mixins: [longText],
   props: [
     'id',
     'userId',
@@ -54,28 +63,6 @@ export default {
     'experienceLevel',
     'areas',
   ],
-  data() {
-    return {
-      seeMore: false,
-    };
-  },
-  computed: {
-    manyChars() {
-      return this.details.length > 200;
-    },
-    receivedDetails() {
-      if (this.details.length > 200 && this.seeMore === false) {
-        return this.details.slice(0, 200) + '....';
-      } else {
-        return this.details;
-      }
-    },
-  },
-  methods: {
-    showMoreDetails() {
-      this.seeMore = true;
-    },
-  },
 };
 </script>
 
@@ -125,10 +112,13 @@ title {
 .details {
   margin-bottom: 15px;
 }
-.see-more {
+.see {
   font-weight: bold;
-  color: #009688;
+  color: #6b6b6b;
   cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+  margin-left: 1px;
 }
 
 .border {

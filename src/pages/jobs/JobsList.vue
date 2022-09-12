@@ -18,6 +18,7 @@
               >Refresh</base-button
             >
           </div>
+          <job-pagination></job-pagination>
           <div v-if="isLoading">
             <base-spinner></base-spinner>
           </div>

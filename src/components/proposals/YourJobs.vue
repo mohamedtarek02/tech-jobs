@@ -1,13 +1,24 @@
 <template>
   <div class="container">
     <h2>{{ jobTitle }}</h2>
-    <p>{{ jobDetails }}</p>
+    <span style="white-space: pre-line">
+      {{ receivedDetails }}
+    </span>
+    <span class="see" @click="showMoreDetails" v-if="!seeMore && manyChars"
+      >See More</span
+    >
+    <span class="see" v-if="manyChars && seeMore" @click="seeMore = false">
+      See Less
+    </span>
   </div>
 </template>
 
 <script>
+import longText from '../../mixins/longText';
+
 export default {
-  props: ['jobTitle', 'jobDetails'],
+  mixins: [longText],
+  props: ['jobTitle', 'details'],
 };
 </script>
 
@@ -17,5 +28,12 @@ h2 {
 }
 p {
   white-space: pre-line;
+}
+.see {
+  font-weight: bold;
+  color: #6b6b6b;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 1px;
 }
 </style>
