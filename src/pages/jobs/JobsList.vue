@@ -18,13 +18,12 @@
               >Refresh</base-button
             >
           </div>
-          <job-pagination></job-pagination>
           <div v-if="isLoading">
             <base-spinner></base-spinner>
           </div>
           <ul v-else-if="hasJobs">
             <job-item
-              v-for="job in filteredJobs"
+              v-for="job in jobs"
               :key="job.id"
               :id="job.id"
               :userId="job.userId"
@@ -37,6 +36,11 @@
           </ul>
           <h3 v-else>No jobs found.</h3>
         </base-card>
+        <base-pagination
+          @page-number="pageData"
+          :pageNumbers="filteredJobs.length"
+          :resetPages="resetPages"
+        ></base-pagination>
       </section>
     </div>
   </div>
@@ -62,6 +66,8 @@ export default {
         design: true,
         dataAnalytics: true,
       },
+      jobs: [],
+      resetPages: null,
     };
   },
   computed: {
@@ -96,10 +102,22 @@ export default {
       return !this.isLoading && this.$store.getters['jobs/hasJobs'];
     },
   },
+  watch: {
+    filteredJobs() {
+      this.pageData(1);
+    },
+  },
 
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+      this.resetPages = Math.random();
+    },
+    pageData(val) {
+      let start = val * 5 - 5;
+      let end = val * 5;
+      this.jobs = this.filteredJobs.slice(start, end);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     async loadJobs(refresh = false) {
       this.isLoading = true;
@@ -116,9 +134,10 @@ export default {
       this.error = null;
     },
   },
-  created() {
-    this.loadJobs();
-    this.handleError();
+  async created() {
+    await this.loadJobs();
+    await this.handleError();
+    this.pageData(1);
   },
 };
 </script>
@@ -131,7 +150,7 @@ export default {
   display: flex;
 }
 .filter {
-  margin: 0 3%;
+  margin: 0px 3%;
   width: 20%;
 }
 .jobs {

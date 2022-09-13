@@ -63,11 +63,29 @@ button:active {
   border-color: #01675d;
   color: #01675d;
 }
+.outline-flat {
+  background-color: transparent;
+  border-color: #01675d;
+  color: #01675d;
+  border-radius: 0px;
+  padding: 2px 5px;
+  margin: 2px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.noBR {
+  border-radius: 0px;
+}
 
 .flat:hover,
 .flat:active,
 .outline:hover,
-.outline:active {
+.outline:active,
+.outline-flat:hover,
+.outline-flat:active {
   background-color: #edd2ff;
 }
 </style>
