@@ -188,5 +188,8 @@ div {
   .container:hover {
     background: none;
   }
+  .proposals {
+    margin-left: 2px;
+  }
 }
 </style>
