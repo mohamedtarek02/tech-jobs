@@ -9,5 +9,6 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1.2rem auto;
+  padding-bottom: 0.3rem;
 }
 </style>

@@ -35,12 +35,14 @@
             ></job-item>
           </ul>
           <h3 v-else>No jobs found.</h3>
+          <article class="pagination">
+            <base-pagination
+              @page-number="jobsData"
+              :pageNumbers="filteredJobs.length"
+              :resetPages="resetPages"
+            ></base-pagination>
+          </article>
         </base-card>
-        <base-pagination
-          @page-number="pageData"
-          :pageNumbers="filteredJobs.length"
-          :resetPages="resetPages"
-        ></base-pagination>
       </section>
     </div>
   </div>
@@ -68,6 +70,7 @@ export default {
       },
       jobs: [],
       resetPages: null,
+      itemsPerPage: null,
     };
   },
   computed: {
@@ -104,7 +107,7 @@ export default {
   },
   watch: {
     filteredJobs() {
-      this.pageData(1);
+      this.jobsData(1, this.itemsPerPage);
     },
   },
 
@@ -113,9 +116,10 @@ export default {
       this.activeFilters = updatedFilters;
       this.resetPages = Math.random();
     },
-    pageData(val) {
-      let start = val * 5 - 5;
-      let end = val * 5;
+    jobsData(pageNumber, itemsPerPage) {
+      this.itemsPerPage = itemsPerPage;
+      let start = pageNumber * itemsPerPage - itemsPerPage;
+      let end = pageNumber * itemsPerPage;
       this.jobs = this.filteredJobs.slice(start, end);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
@@ -137,7 +141,7 @@ export default {
   async created() {
     await this.loadJobs();
     await this.handleError();
-    this.pageData(1);
+    this.jobsData(1, 4);
   },
 };
 </script>
@@ -165,6 +169,10 @@ ul {
 .controls {
   display: flex;
   justify-content: space-between;
+}
+
+.pagination {
+  margin: 40px;
 }
 
 /* Media  */

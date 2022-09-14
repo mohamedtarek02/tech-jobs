@@ -127,6 +127,4 @@ li {
     padding: 10px 1px;
   }
 }
-@media (min-width: 480px) and (max-width: 768px) {
-}
 </style>

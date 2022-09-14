@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <div>
+    <section class="pages-number">
+      <label for="itemsPerPage">Jobs Per Page: </label>
+      <select name="itemsPerPage" id="itemsPerPage" v-model="itemsPerPage">
+        <option value="4" selected>4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+    </section>
+    <section class="paginations">
       <base-button
         :class="[['flat'], { disabled: pageNumber === 1 }]"
         @click="pageNumber = 1"
@@ -38,7 +47,7 @@
         @click="pageNumber = maxNumberPage"
         >last</base-button
       >
-    </div>
+    </section>
   </div>
 </template>
 
@@ -48,19 +57,23 @@ export default {
   data() {
     return {
       pageNumber: 1,
+      itemsPerPage: 4,
     };
   },
   computed: {
     maxNumberPage() {
-      return Math.ceil(this.pageNumbers / 5);
+      return Math.ceil(this.pageNumbers / this.itemsPerPage);
     },
   },
   watch: {
     pageNumber(val) {
-      this.$emit('page-number', val);
+      this.$emit('page-number', val, this.itemsPerPage);
+    },
+    itemsPerPage(val) {
+      this.pageNumber = 1;
+      this.$emit('page-number', this.pageNumber, val);
     },
     resetPages() {
-      console.log('workiiiing');
       this.pageNumber = 1;
     },
   },
@@ -77,10 +90,35 @@ export default {
 
 <style scoped>
 .container {
-  margin: 10px;
+  margin: 10px 0 50px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 99%;
+}
+label + select {
+  color: #009688;
 }
 
+select {
+  padding: 3px 13px;
+  cursor: pointer;
+  border: 1px solid #bebcbc;
+}
+select:hover,
+select:active,
+select:focus {
+  border: 1px solid #919090;
+}
+select option {
+  cursor: pointer;
+}
+select option:hover {
+  background-color: #bebcbc;
+  cursor: pointer;
+}
 .pag-nums {
   margin: 0 5px;
   display: inline-block;
