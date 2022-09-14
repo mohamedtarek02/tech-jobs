@@ -133,7 +133,7 @@ export default {
       this.itemsPerPage = itemsPerPage;
       let start = pageNumber * itemsPerPage - itemsPerPage;
       let end = pageNumber * itemsPerPage;
-      this.jobs = this.filteredJobs.slice(start, end).reverse();
+      this.jobs = this.filteredJobs.slice(start, end);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     async loadJobs(refresh = false) {

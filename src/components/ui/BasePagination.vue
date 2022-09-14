@@ -11,7 +11,7 @@
     </section>
     <section class="paginations">
       <base-button
-        :class="[['flat'], { disabled: pageNumber === 1 }]"
+        :class="[['flat', 'first'], { disabled: pageNumber === 1 }]"
         @click="pageNumber = 1"
         >first</base-button
       >
@@ -43,7 +43,7 @@
         >&gt;</base-button
       >
       <base-button
-        :class="[['flat'], { disabled: pageNumber === maxNumberPage }]"
+        :class="[['flat', 'last'], { disabled: pageNumber === maxNumberPage }]"
         @click="pageNumber = maxNumberPage"
         >last</base-button
       >
@@ -147,7 +147,22 @@ select option:hover {
 }
 @media (min-width: 320px) and (max-width: 768px) {
   .container {
-    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    height: 75px;
+  }
+  .pages-number {
+    order: 2;
+    margin-bottom: 3px;
+  }
+  .paginations {
+    order: 1;
+    flex-shrink: 1;
+  }
+  .first,
+  .last {
+    display: none;
   }
 }
 @media (min-width: 480px) and (max-width: 768px) {

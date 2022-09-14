@@ -3,10 +3,10 @@
     <div class="border">
       <li>
         <div class="headContainer">
-          <div class="title">
+          <div class="titleCon">
             <h2>{{ title }}</h2>
           </div>
-          <div class="rateDiv">
+          <div class="rateCon">
             <span class="rate">${{ rate }} / hour</span>
           </div>
         </div>
@@ -112,10 +112,14 @@ span {
   justify-content: space-between;
   flex-wrap: nowrap;
 }
-title {
+.titleCon {
   margin-bottom: 0px !important;
+  width: 70%;
+  margin-right: 5%;
 }
-
+.rateCon {
+  float: right;
+}
 .rate {
   font-weight: 600;
   color: green;

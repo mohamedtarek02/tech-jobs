@@ -1,6 +1,6 @@
 export default {
   registerJob(state, payload) {
-    state.jobs.unshift(payload);
+    state.jobs.push(payload);
   },
   setJobs(state, payload) {
     state.jobs = payload;
