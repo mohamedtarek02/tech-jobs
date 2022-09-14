@@ -14,6 +14,10 @@
       <section class="jobs">
         <base-card>
           <div class="controls">
+            <p class="jobs-number">
+              <span> {{ this.filteredJobs.length }} </span>
+              jobs found
+            </p>
             <base-button mode="outline" @click="loadJobs(true)" class="refresh"
               >Refresh</base-button
             >
@@ -77,6 +81,15 @@ export default {
     filteredJobs() {
       const jobs = this.$store.getters['jobs/jobs'];
       return jobs.filter((job) => {
+        if (
+          !this.activeFilters.frontend &&
+          !this.activeFilters.backend &&
+          !this.activeFilters.security &&
+          !this.activeFilters.design &&
+          !this.activeFilters.dataAnalytics
+        ) {
+          return true;
+        }
         if (this.activeFilters.design && job.areas.includes('UI & UX Design')) {
           return true;
         }
@@ -120,7 +133,7 @@ export default {
       this.itemsPerPage = itemsPerPage;
       let start = pageNumber * itemsPerPage - itemsPerPage;
       let end = pageNumber * itemsPerPage;
-      this.jobs = this.filteredJobs.slice(start, end);
+      this.jobs = this.filteredJobs.slice(start, end).reverse();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     async loadJobs(refresh = false) {
@@ -169,8 +182,17 @@ ul {
 .controls {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 99%;
+}
+.jobs-number {
+  margin-left: 2%;
 }
 
+.jobs-number span {
+  font-weight: 600;
+  margin-right: 2px;
+}
 .pagination {
   margin: 40px;
 }

@@ -5,28 +5,23 @@
         <h2>Filter by:</h2>
         <div class="skills-container">
           <div class="skills-control">
-            <input type="checkbox" id="design" checked @change="setFilter" />
+            <input type="checkbox" id="design" @change="setFilter" />
             <label for="design">UI & UX Design</label>
           </div>
           <div class="skills-control">
-            <input type="checkbox" id="frontend" checked @change="setFilter" />
+            <input type="checkbox" id="frontend" @change="setFilter" />
             <label for="frontend">Frontend</label>
           </div>
           <div class="skills-control">
-            <input type="checkbox" id="backend" checked @change="setFilter" />
+            <input type="checkbox" id="backend" @change="setFilter" />
             <label for="backend">Backend</label>
           </div>
           <div class="skills-control">
-            <input type="checkbox" id="security" checked @change="setFilter" />
+            <input type="checkbox" id="security" @change="setFilter" />
             <label for="security">Cybersecurity</label>
           </div>
           <div class="skills-control">
-            <input
-              type="checkbox"
-              id="dataAnalytics"
-              checked
-              @change="setFilter"
-            />
+            <input type="checkbox" id="dataAnalytics" @change="setFilter" />
             <label for="dataAnalytics">Data Analytics</label>
           </div>
         </div>
@@ -41,11 +36,11 @@ export default {
   data() {
     return {
       filters: {
-        frontend: true,
-        backend: true,
-        security: true,
-        design: true,
-        dataAnalytics: true,
+        frontend: false,
+        backend: false,
+        security: false,
+        design: false,
+        dataAnalytics: false,
       },
     };
   },
@@ -86,6 +81,10 @@ h2 {
 .skills-control {
   width: 100%;
   margin-bottom: 7px;
+}
+input,
+label {
+  cursor: pointer;
 }
 
 /* Media */

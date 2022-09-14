@@ -10,9 +10,16 @@
             <span class="rate">${{ rate }} / hour</span>
           </div>
         </div>
-        <p class="exp">
-          Experiecne level: <span class="level">{{ experienceLevel }}</span>
-        </p>
+        <div class="info">
+          <span class="experience">
+            Experiecne level:
+            <span class="level">{{ experienceLevel }} </span>
+          </span>
+          <span class="proposals">
+            - Proposals Received:
+            <span class="level">{{ proposalsNumber(id) }}</span>
+          </span>
+        </div>
         <div class="details">
           <span style="white-space: pre-line">
             {{ receivedDetails }}
@@ -63,6 +70,22 @@ export default {
     'experienceLevel',
     'areas',
   ],
+  methods: {
+    fetchProposals() {
+      this.$store.dispatch('requests/fetchRequests');
+    },
+    proposalsNumber(id) {
+      const requests = this.$store.getters['requests/allRequests'];
+      const filteredRequests = requests.filter(
+        (request) => request.jobId === id
+      );
+      console.log();
+      return filteredRequests.length;
+    },
+  },
+  async created() {
+    await this.fetchProposals();
+  },
 };
 </script>
 
@@ -97,11 +120,15 @@ title {
   font-weight: 600;
   color: green;
 }
-.exp {
+.info {
   color: #727070;
   margin-top: -6px;
   font-size: 13px;
   margin-bottom: 30px;
+}
+.proposals {
+  display: inline-block;
+  margin-left: 5px;
 }
 .level {
   display: inline-block;

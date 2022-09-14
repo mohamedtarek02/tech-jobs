@@ -98,6 +98,9 @@ export default {
   flex-wrap: nowrap;
   width: 99%;
 }
+label {
+  font-weight: 600;
+}
 label + select {
   color: #009688;
 }
@@ -141,5 +144,12 @@ select option:hover {
 }
 .disabled:hover {
   background-color: white;
+}
+@media (min-width: 320px) and (max-width: 768px) {
+  .container {
+    display: block;
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
 }
 </style>
